@@ -1,0 +1,17 @@
+{
+  "name": "snapcraft-kustomize",
+  "version": "1.0.0",
+  "description": "Kustomize on Snapcraft Store",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "abskmj@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "^14.3.4"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}

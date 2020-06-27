@@ -1,0 +1,19 @@
+name: kustomize
+base: core18
+version: {{version}}
+summary: Kubernetes native configuration management
+description: |
+  Kustomize introduces a template-free way to customize application configuration
+  that simplifies the use of off-the-shelf applications.
+
+grade: stable
+confinement: strict
+
+parts:
+  kustomize:
+    plugin: dump
+    source: https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv$SNAPCRAFT_PROJECT_VERSION/kustomize_v$SNAPCRAFT_PROJECT_VERSION_linux_amd64.tar.gz
+
+apps:
+  kustomize:
+    command: kustomize
