@@ -3,8 +3,7 @@ base: core18
 version: {{version}}
 summary: Kubernetes native configuration management
 description: |
-  Kustomize introduces a template-free way to customize application configuration
-  that simplifies the use of off-the-shelf applications.
+  Kustomize introduces a template-free way to customize application configuration that simplifies the use of off-the-shelf applications.
 
 grade: stable
 confinement: strict

@@ -11,7 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup Snapcraft
-      run: sudo snap install snapcraft --classic
+      run: |
+        sudo snap install snapcraft --classic
+        echo $SNAP_TOKEN | snapcraft login --with -
+      env:
+        SNAP_TOKEN: ${{secrets.SNAP_TOKEN}}      
     - name: Setup Node.js Environment
       uses: actions/setup-node@v1.4.1
     - name: Install Dependencies
