@@ -1,0 +1,18 @@
+name: Publish Docker Images
+on:
+  push:
+    branches: [ gh-action ]
+#   schedule:
+#     # run every day at midnight
+#     - cron:  '0 0 * * *'
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node.js Environment
+      uses: actions/setup-node@v1.4.1
+    - name: Install Dependencies
+      run: npm install --production
+    - name: Run Script
+      run: npm start
