@@ -53,7 +53,7 @@ const downloadLinuxBinary = async (release) => {
         console.log('Publishing a new version')
 
         console.log('Generating new snapcraft.yaml')
-        execute(`sed 's/{{version}}/${version}/' snap/snapcraft.template.yaml > snapcraft.yaml`)
+        execute(`sed 's/{{version}}/${version}/' snapcraft.template.yaml > snapcraft.yaml`)
         execute('cat snapcraft.yaml')
 
         exec('snapcraft')
