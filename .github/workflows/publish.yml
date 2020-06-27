@@ -1,4 +1,4 @@
-name: Publish Docker Images
+name: Publish to Snapcraft Store
 on:
   push:
     branches: [ feature/gh-action ]
