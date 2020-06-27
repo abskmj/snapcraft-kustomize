@@ -40,8 +40,7 @@ const downloadLinuxBinary = async (release) => {
   try {
     const release = await getLatestRelease('kubernetes-sigs/kustomize')
     if (release) {
-      let version = release.tag_name.replace('kustomize/v', '')
-      version = '3.5.5'
+      const version = release.tag_name.replace('kustomize/v', '')
       console.log('Latest Kustomize Verion:', version)
 
       console.log('Versions on Snapscraft')
