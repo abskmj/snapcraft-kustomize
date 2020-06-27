@@ -12,6 +12,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Setup Snapcraft
       run: sudo snap install snapcraft --classic
+      env:
+        SNAPCRAFT_BUILD_ENVIRONMENT: host
     - name: Setup Node.js Environment
       uses: actions/setup-node@v1.4.1
     - name: Install Dependencies
