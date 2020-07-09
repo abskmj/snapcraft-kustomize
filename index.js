@@ -11,36 +11,35 @@ const exec = (command) => {
   return execSync(command, { stdio: 'inherit' })
 }
 
-const getLatestRelease = async (repo) => {
-  const api = `https://api.github.com/repos/${repo}/releases/latest`
+const getReleases = async () => {
+  const res = await axios.get('https://api.github.com/repos/kubernetes-sigs/kustomize/releases')
 
-  const response = await axios.get(api)
+  if (res && res.data) {
+    return res.data
+  } else {
+    const err = new Error('Unexpected response from api')
+    err.response = res
 
-  return response.data
+    throw err
+  }
 }
 
-const downloadLinuxBinary = async (release) => {
-  if (release && release.assets) {
-    const asset = release.assets.find((item) => item.name.endsWith('linux_amd64.tar.gz'))
+const getLatestVersion = async () => {
+  const releases = await getReleases()
 
-    if (asset) {
-      console.log('Downloading asset:', asset)
+  const latestRelease = releases.find((release) => release.tag_name && release.tag_name.startsWith('kustomize/v'))
 
-      execute('mkdir -p downloads')
-      execute(`wget -c ${asset.browser_download_url} -O - | tar -xvz --directory downloads`)
-    } else {
-      console.log('Error: could not find an matching asset')
-    }
+  if (latestRelease) {
+    return latestRelease.tag_name.replace('kustomize/v', '')
   } else {
-    console.log('Error: current release does not have any assets')
+    throw new Error('Couldn\'t find a release')
   }
 }
 
 (async () => {
   try {
-    const release = await getLatestRelease('kubernetes-sigs/kustomize')
-    if (release) {
-      const version = release.tag_name.replace('kustomize/v', '')
+    const version = '3.7.0' // await getLatestVersion()
+    if (version) {
       console.log('Latest Kustomize Verion:', version)
 
       console.log('Versions on Snapscraft')
@@ -56,9 +55,10 @@ const downloadLinuxBinary = async (release) => {
         execute('cat snapcraft.yaml')
 
         exec('snapcraft')
+        exec('snapcraft upload --release=stable *.snap')
       }
     } else {
-      console.log('Error: could not get latest release')
+      throw new Error('Couldn\'t find a version')
     }
   } catch (err) {
     console.error(err)
