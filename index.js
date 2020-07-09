@@ -43,7 +43,7 @@ const getLatestVersion = async () => {
       console.log('Latest Kustomize Verion:', version)
 
       console.log('Versions on Snapscraft')
-      const result = execute('snap info kustomize')
+      const result = '' // execute('snap info kustomize')
 
       if (result.includes(version)) {
         console.log('Skipping as current version already published')
