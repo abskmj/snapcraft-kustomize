@@ -16,3 +16,7 @@ parts:
 apps:
   kustomize:
     command: kustomize
+    plugs:
+     - network
+     - home
+     - removable-media
