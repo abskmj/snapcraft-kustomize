@@ -1,0 +1,26 @@
+name: Publish to Snapcraft Store
+on:
+  push:
+    branches: [ master ]
+  schedule:
+    # run every day at midnight
+    - cron:  '0 0 * * *'
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Snapcraft
+      run: |
+        sudo snap install snapcraft --classic
+        echo "$SNAP_TOKEN" | snapcraft login --with -
+      env:
+        SNAP_TOKEN: ${{secrets.SNAP_TOKEN}}      
+    - name: Setup Node.js Environment
+      uses: actions/setup-node@v1.4.1
+    - name: Install Dependencies
+      run: npm install --production
+    - name: Run Script
+      run: npm start
+      env:
+        SNAPCRAFT_BUILD_ENVIRONMENT: host
