@@ -54,6 +54,8 @@ const getLatestVersion = async () => {
         execute(`sed 's/{{version}}/${version}/' snapcraft.template.yaml > snapcraft.yaml`)
         execute('cat snapcraft.yaml')
 
+        // refresh cache
+        exec('snapcraft clean')
         exec('snapcraft')
         exec('snapcraft upload --release=stable *.snap')
       }
