@@ -1,5 +1,5 @@
 name: kustomize
-base: core20
+build-base: core20
 version: {{version}}
 summary: Kubernetes native configuration management
 description: |
