@@ -25,8 +25,10 @@ apps:
     environment:
       GIT_EXEC_PATH: $SNAP/usr/lib/git-core
 
-package-repositories:
+package-repositories:  
   - type: apt
+    formats: [deb, deb-src]
     components: [main]
-    suites: [focal-updates]
-    url: http://archive.ubuntu.com/ubuntu     
+    suites: [focal-security]
+    key-id: 78E1918602959B9C59103100F1831DDAFC42E99D
+    url: http://security.ubuntu.com/ubuntu
