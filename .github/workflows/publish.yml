@@ -2,9 +2,10 @@ name: Publish to Snapcraft Store
 on:
   push:
     branches: [ master ]
-  schedule:
+  #schedule:
     # run every day at midnight
-    - cron:  '0 0 * * *'
+    #- cron:  '0 0 * * *'
+  workflow_dispatch:
 jobs:
   publish:
     runs-on: ubuntu-latest
