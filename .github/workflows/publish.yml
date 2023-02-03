@@ -14,9 +14,9 @@ jobs:
     - name: Setup Snapcraft
       run: |
         sudo snap install snapcraft --classic
-        echo "$SNAP_TOKEN" | snapcraft login --with -
+        snapcraft login
       env:
-        SNAP_TOKEN: ${{secrets.SNAP_TOKEN}}      
+        SNAPCRAFT_STORE_CREDENTIALS: ${{secrets.SNAP_TOKEN}}      
     - name: Setup Node.js Environment
       uses: actions/setup-node@v1
     - name: Install Dependencies
