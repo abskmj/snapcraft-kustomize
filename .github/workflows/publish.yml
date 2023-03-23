@@ -19,7 +19,7 @@ jobs:
       env:
         SNAP_TOKEN: ${{secrets.SNAP_TOKEN}}      
     - name: Setup Node.js Environment
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
     - name: Install Dependencies
       run: npm install --production
     - name: Run Script
